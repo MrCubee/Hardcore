@@ -1,0 +1,7 @@
+name: ${project.name}
+description: "${project.description} Current version: ${plugin.version}"
+website: ${project.url}
+version: ${project.version}
+authors: [${git.branch.authors}]
+main: fr.mrcubee.hardcore.HardcorePlugin
+api-version: 1.19

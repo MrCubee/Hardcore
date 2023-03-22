@@ -1,0 +1,6 @@
+lang: FR_fr
+ban:
+  time:
+    hour: 24
+    minute: 0
+    second: 0
