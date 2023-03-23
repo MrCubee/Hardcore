@@ -6,8 +6,8 @@ import fr.mrcubee.langlib.Lang;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.ServicePriority;
-import org.bukkit.plugin.SimpleServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -29,6 +29,7 @@ public class HardcorePlugin extends JavaPlugin {
         final HardcoreCommand hardcoreCommand;
         final FileConfiguration config;
 
+        ConfigurationSerialization.registerClass(PlayerData.class, "PlayerData");
         this.defaultService = new DefaultHardcoreService();
         getServer().getServicesManager().register(HardcoreService.class, this.defaultService, this, ServicePriority.Lowest);
         pluginCommand = getCommand("hardcore");
@@ -49,6 +50,7 @@ public class HardcorePlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         final YamlConfiguration yamlConfiguration;
+
         try {
             yamlConfiguration = this.defaultService.saveBans();
             if (yamlConfiguration != null)
@@ -56,6 +58,7 @@ public class HardcorePlugin extends JavaPlugin {
         } catch (final IOException exception) {
             exception.printStackTrace();
         }
+        ConfigurationSerialization.unregisterClass(PlayerData.class);
     }
 
 }
