@@ -2,6 +2,7 @@ package fr.mrcubee.hardcore;
 
 import org.bukkit.OfflinePlayer;
 
+import java.util.Set;
 import java.util.UUID;
 
 public interface HardcoreService {
@@ -23,14 +24,18 @@ public interface HardcoreService {
         return strBuilder.toString();
     }
 
-    public long getBanTime(final UUID playerId);
+    public Set<String> playerNameHasData();
 
-    default public <T extends OfflinePlayer> long getBanTime(final T player) {
+    public long getLastDeathTime(final String playerName);
+    public long getLastDeathTime(final UUID playerId);
+
+    default public <T extends OfflinePlayer> long getDeathTime(final T player) {
         if (player == null)
             return 0;
-        return getBanTime(player.getUniqueId());
+        return getLastDeathTime(player.getUniqueId());
     }
 
+    public long getBanRemainingTime(final String playerName);
     public long getBanRemainingTime(final UUID playerId);
 
     default public <T extends OfflinePlayer> long getBanRemainingTime(final T player) {
@@ -39,20 +44,24 @@ public interface HardcoreService {
         return getBanRemainingTime(player.getUniqueId());
     }
 
-    public void setBanTime(final UUID playerId, long time);
+    public boolean setLastDeathTime(final String playerName, long time);
 
-    default public <T extends OfflinePlayer> void setBanTime(final T player, final long time) {
+    public boolean setLastDeathTime(final UUID playerId, long time);
+
+    default public <T extends OfflinePlayer> boolean setBanTime(final T player, final long time) {
         if (player == null)
-            return;
-        setBanTime(player.getUniqueId(), time);
-    }
-    public void revokeBan(final UUID playerId);
-    default public <T extends OfflinePlayer> void revokeBan(final T player) {
-        if (player == null)
-            return;
-        revokeBan(player.getUniqueId());
+            return false;
+        return setLastDeathTime(player.getUniqueId(), time);
     }
 
+    public boolean revokeBan(final String playerName);
 
+    public boolean revokeBan(final UUID playerId);
+
+    default public <T extends OfflinePlayer> boolean revokeBan(final T player) {
+        if (player == null)
+            return false;
+        return revokeBan(player.getUniqueId());
+    }
 
 }
