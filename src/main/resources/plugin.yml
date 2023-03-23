@@ -5,3 +5,12 @@ version: ${project.version}
 authors: [${git.branch.authors}]
 main: fr.mrcubee.hardcore.HardcorePlugin
 api-version: 1.19
+
+commands:
+  hardcore:
+    permission: hardcore.admin
+    aliases: [hd]
+
+permissions:
+  hardcore.admin:
+    default: op

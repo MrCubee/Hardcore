@@ -1,2 +1,6 @@
+ban.player.not_found=Le joueur %s n'est pas connecté ou n'est pas enregistré.
 ban.message=Vous êtes mort. Vous pouvez vous reconnecter dans %s.
 ban.message.remaining=Il vous reste %s à attendre.
+ban.edit.success=La date de la dernière mort de %s a été modifiée avec succès, et il lui reste %s à attendre.
+ban.revoke.success=Le temps de bannissement de %s a été supprimé avec succès.
+ban.show=Il vous reste %s à attendre.

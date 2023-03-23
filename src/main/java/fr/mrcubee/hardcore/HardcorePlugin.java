@@ -1,10 +1,13 @@
 package fr.mrcubee.hardcore;
 
+import fr.mrcubee.hardcore.command.HardcoreCommand;
 import fr.mrcubee.hardcore.listener.ListenerRegister;
 import fr.mrcubee.langlib.Lang;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.ServicePriority;
+import org.bukkit.plugin.SimpleServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -22,15 +25,22 @@ public class HardcorePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        final PluginCommand pluginCommand;
+        final HardcoreCommand hardcoreCommand;
         final FileConfiguration config;
-        final long banTime;
 
+        this.defaultService = new DefaultHardcoreService();
+        getServer().getServicesManager().register(HardcoreService.class, this.defaultService, this, ServicePriority.Lowest);
+        pluginCommand = getCommand("hardcore");
+        hardcoreCommand = new HardcoreCommand();
+        if (pluginCommand != null) {
+            pluginCommand.setExecutor(hardcoreCommand);
+            pluginCommand.setTabCompleter(hardcoreCommand);
+        }
         this.playerBanTimeFile = new File(getDataFolder(), "bans.yml");
         saveDefaultConfig();
         config = getConfig();
         Lang.setDefaultLang(config.getString("lang", "EN_us"));
-        this.defaultService = new DefaultHardcoreService();
-        getServer().getServicesManager().register(HardcoreService.class, defaultService, this, ServicePriority.Lowest);
         ListenerRegister.register(this);
         if (this.playerBanTimeFile.exists())
             this.defaultService.loadBans(YamlConfiguration.loadConfiguration(this.playerBanTimeFile));

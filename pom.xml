@@ -6,10 +6,10 @@
 
     <groupId>fr.mrcubee.minecraft.plugin</groupId>
     <artifactId>hardcore</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
-    <name>HardcoreTempBan</name>
+    <name>Hardcore</name>
     <description>This plugin allows configuring a ban time in case of a player's death.</description>
     <url>https://github.com/MrCubee/Hardcore</url>
 
