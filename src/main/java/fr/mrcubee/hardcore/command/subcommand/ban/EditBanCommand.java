@@ -40,7 +40,7 @@ public class EditBanCommand implements HDCommand {
         }
         switch (str.charAt(str.length() - 1)) {
             case 'd':
-                unit = 86400;
+                unit = 86400000;
                 break;
             case 'h':
                 unit = 3600000;
