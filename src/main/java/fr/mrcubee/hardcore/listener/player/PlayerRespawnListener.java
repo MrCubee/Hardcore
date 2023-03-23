@@ -34,6 +34,7 @@ public class PlayerRespawnListener implements Listener {
         player.setGameMode(GameMode.SURVIVAL);
         player.setMaxHealth(20);
         player.setHealth(20);
+        player.setFoodLevel(20);
         remainingTimeStr = HardcoreService.formatTime(this.banService.getBanRemainingTime(player));
         player.kickPlayer(Lang.getMessage(player, "ban.message",
                 "&cLANG ERROR: ban.message", true, remainingTimeStr));
