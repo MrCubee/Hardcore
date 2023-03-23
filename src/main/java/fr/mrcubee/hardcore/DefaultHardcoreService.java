@@ -71,7 +71,7 @@ public class DefaultHardcoreService implements HardcoreService {
         if (player != null)
             return this.uuidPlayerData.get(player.getUniqueId());
         for (final PlayerData playerData : this.uuidPlayerData.values()) {
-            if (playerData.name != null && playerData.name.equalsIgnoreCase("name"))
+            if (playerData.name != null && playerData.name.equalsIgnoreCase(name))
                 return playerData;
         }
         return null;
