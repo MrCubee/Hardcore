@@ -22,8 +22,8 @@ public class PlayerData implements ConfigurationSerializable {
         final Map<String, Object> map = new HashMap<String, Object>(3);
 
         map.put("name", this.name);
-        map.put("deathCount", this.name);
-        map.put("deathTime", this.name);
+        map.put("deathCount", this.deathCount);
+        map.put("deathTime", this.deathTime);
         return map;
     }
 
