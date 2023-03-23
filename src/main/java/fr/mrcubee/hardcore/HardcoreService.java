@@ -16,7 +16,7 @@ public interface HardcoreService {
     public static String formatTime(final long time) {
         final StringBuilder strBuilder = new StringBuilder();
 
-        strBuilder.append(formatNumber((time / 3600000) % 60));
+        strBuilder.append(formatNumber(time / 3600000));
         strBuilder.append(':');
         strBuilder.append(formatNumber((time / 60000) % 60));
         strBuilder.append(':');
