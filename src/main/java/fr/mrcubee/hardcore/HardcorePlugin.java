@@ -33,9 +33,9 @@ public class HardcorePlugin extends JavaPlugin {
 
         saveDefaultConfig();
         config = getConfig();
+        this.defaultService = new DefaultHardcoreService();
         this.defaultService.loadBanTime(config.getConfigurationSection("ban.time"));
         ConfigurationSerialization.registerClass(PlayerData.class, "PlayerData");
-        this.defaultService = new DefaultHardcoreService();
         getServer().getServicesManager().register(HardcoreService.class, this.defaultService, this, ServicePriority.Lowest);
         pluginCommand = getCommand("hardcore");
         hardcoreCommand = new HardcoreCommand(this);
