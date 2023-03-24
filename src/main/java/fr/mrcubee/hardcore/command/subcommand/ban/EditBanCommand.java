@@ -8,6 +8,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.server.ServiceRegisterEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +20,7 @@ public class EditBanCommand implements HDCommand {
     private static List<String> OPERATIONS = Arrays.asList("+", "-");
     private static List<String> UNITS = Arrays.asList("d", "h", "m", "s");
 
-    private final HardcoreService hardcoreService;
+    private HardcoreService hardcoreService;
 
     public EditBanCommand() {
         this.hardcoreService = Bukkit.getServicesManager().load(HardcoreService.class);
@@ -112,4 +114,11 @@ public class EditBanCommand implements HDCommand {
         result.removeIf(element -> !element.toLowerCase().startsWith(current));
         return result;
     }
+
+    @EventHandler
+    public void updateBanServiceEvent(final ServiceRegisterEvent event) {
+        if (event.getProvider().getService().equals(HardcoreService.class))
+            this.hardcoreService = Bukkit.getServicesManager().load(HardcoreService.class);
+    }
+
 }

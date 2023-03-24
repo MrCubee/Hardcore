@@ -4,23 +4,28 @@ import fr.mrcubee.hardcore.HardcoreService;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Server;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.server.ServiceRegisterEvent;
 
 public class PlayerRespawnListener implements Listener {
 
-    private final HardcoreService banService;
+    private HardcoreService banService;
     private final Server server;
 
     public PlayerRespawnListener() {
         this.banService = Bukkit.getServicesManager().load(HardcoreService.class);
         this.server = Bukkit.getServer();
+    }
+
+    @EventHandler
+    public void updateBanServiceEvent(final ServiceRegisterEvent event) {
+        if (event.getProvider().getService().equals(HardcoreService.class))
+            this.banService = Bukkit.getServicesManager().load(HardcoreService.class);
     }
 
     @EventHandler(priority = EventPriority.LOW)

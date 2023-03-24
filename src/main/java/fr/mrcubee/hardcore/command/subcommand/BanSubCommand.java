@@ -1,11 +1,14 @@
 package fr.mrcubee.hardcore.command.subcommand;
 
+import fr.mrcubee.hardcore.HardcorePlugin;
 import fr.mrcubee.hardcore.command.HDCommand;
 import fr.mrcubee.hardcore.command.subcommand.ban.EditBanCommand;
 import fr.mrcubee.hardcore.command.subcommand.ban.RevokeSubCommand;
 import fr.mrcubee.hardcore.command.subcommand.ban.ShowSubCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.PluginManager;
 
 import java.util.*;
 
@@ -13,11 +16,15 @@ public class BanSubCommand implements HDCommand {
 
     private final Map<String, HDCommand> subCommands;
 
-    public BanSubCommand() {
+    public BanSubCommand(final HardcorePlugin hardcorePlugin) {
+        final PluginManager pluginManager = Bukkit.getPluginManager();
+
         this.subCommands = new HashMap<String, HDCommand>(3);
         this.subCommands.put("edit", new EditBanCommand());
         this.subCommands.put("revoke", new RevokeSubCommand());
         this.subCommands.put("show", new ShowSubCommand());
+        for (final HDCommand command : this.subCommands.values())
+            pluginManager.registerEvents(command, hardcorePlugin);
     }
 
     @Override

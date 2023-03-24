@@ -1,5 +1,6 @@
 package fr.mrcubee.hardcore.command;
 
+import fr.mrcubee.hardcore.HardcorePlugin;
 import fr.mrcubee.hardcore.command.subcommand.BanSubCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,9 +11,9 @@ public class HardcoreCommand implements HDCommand {
 
     private final Map<String, HDCommand> subCommands;
 
-    public HardcoreCommand() {
+    public HardcoreCommand(final HardcorePlugin hardcorePlugin) {
         this.subCommands = new HashMap<String, HDCommand>(2);
-        this.subCommands.put("ban", new BanSubCommand());
+        this.subCommands.put("ban", new BanSubCommand(hardcorePlugin));
     }
 
     @Override

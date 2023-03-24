@@ -33,7 +33,7 @@ public class HardcorePlugin extends JavaPlugin {
         this.defaultService = new DefaultHardcoreService();
         getServer().getServicesManager().register(HardcoreService.class, this.defaultService, this, ServicePriority.Lowest);
         pluginCommand = getCommand("hardcore");
-        hardcoreCommand = new HardcoreCommand();
+        hardcoreCommand = new HardcoreCommand(this);
         if (pluginCommand != null) {
             pluginCommand.setExecutor(hardcoreCommand);
             pluginCommand.setTabCompleter(hardcoreCommand);

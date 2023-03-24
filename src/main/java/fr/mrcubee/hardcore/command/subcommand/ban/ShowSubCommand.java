@@ -6,6 +6,8 @@ import fr.mrcubee.langlib.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.server.ServiceRegisterEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +15,7 @@ import java.util.List;
 
 public class ShowSubCommand implements HDCommand {
 
-    private final HardcoreService hardcoreService;
+    private HardcoreService hardcoreService;
 
     public ShowSubCommand() {
         this.hardcoreService = Bukkit.getServicesManager().load(HardcoreService.class);
@@ -36,6 +38,12 @@ public class ShowSubCommand implements HDCommand {
         if (args.length < 2)
             return new ArrayList<String>(this.hardcoreService.playerNameHasData());
         return Collections.emptyList();
+    }
+
+    @EventHandler
+    public void updateBanServiceEvent(final ServiceRegisterEvent event) {
+        if (event.getProvider().getService().equals(HardcoreService.class))
+            this.hardcoreService = Bukkit.getServicesManager().load(HardcoreService.class);
     }
 
 }

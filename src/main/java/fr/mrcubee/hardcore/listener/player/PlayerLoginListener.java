@@ -8,13 +8,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.server.ServiceRegisterEvent;
 
 public class PlayerLoginListener implements Listener {
 
-    private final HardcoreService banService;
+    private HardcoreService banService;
 
     public PlayerLoginListener() {
         this.banService = Bukkit.getServicesManager().load(HardcoreService.class);
+    }
+
+    @EventHandler
+    public void updateBanServiceEvent(final ServiceRegisterEvent event) {
+        if (event.getProvider().getService().equals(HardcoreService.class))
+            this.banService = Bukkit.getServicesManager().load(HardcoreService.class);
     }
 
     @EventHandler(priority = EventPriority.LOW)
