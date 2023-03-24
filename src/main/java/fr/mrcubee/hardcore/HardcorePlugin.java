@@ -31,6 +31,9 @@ public class HardcorePlugin extends JavaPlugin {
         final HardcoreCommand hardcoreCommand;
         final FileConfiguration config;
 
+        saveDefaultConfig();
+        config = getConfig();
+        this.defaultService.loadBanTime(config.getConfigurationSection("ban.time"));
         ConfigurationSerialization.registerClass(PlayerData.class, "PlayerData");
         this.defaultService = new DefaultHardcoreService();
         getServer().getServicesManager().register(HardcoreService.class, this.defaultService, this, ServicePriority.Lowest);
@@ -41,8 +44,6 @@ public class HardcorePlugin extends JavaPlugin {
             pluginCommand.setTabCompleter(hardcoreCommand);
         }
         this.playerBanTimeFile = new File(getDataFolder(), "bans.yml");
-        saveDefaultConfig();
-        config = getConfig();
         Lang.setDefaultLang(config.getString("lang", "EN_us"));
         ListenerRegister.register(this);
         if (this.playerBanTimeFile.exists())

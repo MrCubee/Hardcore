@@ -36,6 +36,12 @@ public class DefaultHardcoreService implements HardcoreService {
         return day * 86400000 + hour * 3600000 + minute * 60000 + second * 1000;
     }
 
+    public void loadBanTime(final ConfigurationSection section) {
+        if (section == null)
+            return;
+        this.banTime = getBanTimeFromSection(section);
+    }
+
     public void loadBans(final YamlConfiguration configuration) {
         UUID playerId;
         PlayerData playerData;
