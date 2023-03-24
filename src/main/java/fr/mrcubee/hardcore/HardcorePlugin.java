@@ -55,6 +55,8 @@ public class HardcorePlugin extends JavaPlugin {
         final YamlConfiguration yamlConfiguration;
 
         try {
+            if (this.playerBanTimeFile.exists())
+                this.playerBanTimeFile.delete();
             yamlConfiguration = this.defaultService.saveBans();
             if (yamlConfiguration != null)
                 yamlConfiguration.save(this.playerBanTimeFile);
