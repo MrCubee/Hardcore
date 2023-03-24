@@ -1,6 +1,6 @@
 package fr.mrcubee.hardcore.listener.player;
 
-import fr.mrcubee.hardcore.HardcoreService;
+import fr.mrcubee.hardcore.service.HardcoreService;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

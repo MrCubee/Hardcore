@@ -1,5 +1,6 @@
-package fr.mrcubee.hardcore;
+package fr.mrcubee.hardcore.service;
 
+import fr.mrcubee.hardcore.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;

@@ -1,4 +1,4 @@
-package fr.mrcubee.hardcore;
+package fr.mrcubee.hardcore.service;
 
 import org.bukkit.OfflinePlayer;
 

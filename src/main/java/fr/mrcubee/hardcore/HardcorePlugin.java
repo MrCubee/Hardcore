@@ -2,6 +2,8 @@ package fr.mrcubee.hardcore;
 
 import fr.mrcubee.hardcore.command.HardcoreCommand;
 import fr.mrcubee.hardcore.listener.ListenerRegister;
+import fr.mrcubee.hardcore.service.DefaultHardcoreService;
+import fr.mrcubee.hardcore.service.HardcoreService;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;

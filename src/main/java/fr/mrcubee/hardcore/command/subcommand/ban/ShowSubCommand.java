@@ -1,6 +1,6 @@
 package fr.mrcubee.hardcore.command.subcommand.ban;
 
-import fr.mrcubee.hardcore.HardcoreService;
+import fr.mrcubee.hardcore.service.HardcoreService;
 import fr.mrcubee.hardcore.command.HDCommand;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Bukkit;
