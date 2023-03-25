@@ -72,12 +72,10 @@ public class EditBanCommand implements HDCommand {
         if (args.length < 2)
             return false;
         playerName = args[0];
-        banTime = this.hardcoreService.getLastDeathTime(playerName);
-        if (banTime == 0)
-            banTime = System.currentTimeMillis() - (this.hardcoreService instanceof DefaultHardcoreService ? ((DefaultHardcoreService) hardcoreService).banTime : 0);
+        banTime = this.hardcoreService.getLastDeathTime(playerName) + this.hardcoreService.getBanRemainingTime(playerName);
         for (int i = 1; i < args.length; i++)
             banTime += parseEditCommand(args[i]);
-        if (!this.hardcoreService.setLastDeathTime(playerName, banTime)) {
+        if (!this.hardcoreService.setEndBanTime(playerName, banTime)) {
             commandSender.sendMessage(Lang.getMessage(commandSender, "ban.player.not_found",
                     "&cLANG ERROR: ban.player.not_found", true, playerName));
             return true;
