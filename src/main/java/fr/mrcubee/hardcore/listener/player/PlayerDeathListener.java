@@ -29,6 +29,8 @@ public class PlayerDeathListener implements Listener {
     public void event(final PlayerDeathEvent event) {
         if (!this.server.isHardcore())
             return;
+        event.setKeepLevel(false);
+        event.setKeepInventory(false);
         this.banService.setBanTime(event.getEntity(), System.currentTimeMillis());
     }
 
