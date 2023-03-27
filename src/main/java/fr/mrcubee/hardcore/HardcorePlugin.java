@@ -45,7 +45,7 @@ public class HardcorePlugin extends JavaPlugin {
         }
         this.playerBanTimeFile = new File(getDataFolder(), "bans.yml");
         Lang.setDefaultLang(config.getString("lang", "EN_us"));
-        ListenerRegister.register(this);
+        ListenerRegister.register();
         if (this.playerBanTimeFile.exists())
             this.defaultService.loadBans(YamlConfiguration.loadConfiguration(this.playerBanTimeFile));
     }
